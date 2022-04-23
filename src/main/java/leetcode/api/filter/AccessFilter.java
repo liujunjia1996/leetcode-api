@@ -32,7 +32,7 @@ public class AccessFilter implements Filter {
         resp.setHeader("Access-Control-Max-Age", "3600");
         resp.setHeader("Access-Control-Allow-Headers", ACCESS_TOKEN);
 
-        var token = req.getHeader(ACCESS_TOKEN);
+        String token = req.getHeader(ACCESS_TOKEN);
         if (Objects.equals(token, "day5") || Objects.equals(req.getServletPath(), "/")) {
             filterChain.doFilter(request, response);
         } else {
