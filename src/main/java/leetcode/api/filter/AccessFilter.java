@@ -21,6 +21,8 @@ public class AccessFilter implements Filter {
 
     static final String JSON = "application/json";
 
+    static final String ACCESS_TOKEN = "access-token";
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
@@ -28,8 +30,9 @@ public class AccessFilter implements Filter {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         resp.setHeader("Access-Control-Max-Age", "3600");
+        resp.setHeader("Access-Control-Request-Headers", ACCESS_TOKEN);
 
-        var token = req.getHeader("access-token");
+        var token = req.getHeader(ACCESS_TOKEN);
         if (Objects.equals(token, "day5") || Objects.equals(req.getServletPath(), "/")) {
             filterChain.doFilter(request, response);
         } else {
