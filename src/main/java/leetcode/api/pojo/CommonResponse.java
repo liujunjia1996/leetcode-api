@@ -20,7 +20,7 @@ public class CommonResponse {
     }
 
     public static CommonResponse fail(int code, String msg) {
-        var resp = new CommonResponse(null);
+        CommonResponse resp = new CommonResponse(null);
         resp.setCode(code);
         resp.setMsg(msg);
         return resp;
