@@ -30,7 +30,7 @@ public class AccessFilter implements Filter {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         resp.setHeader("Access-Control-Max-Age", "3600");
-        resp.setHeader("Access-Control-Request-Headers", ACCESS_TOKEN);
+        resp.setHeader("Access-Control-Allow-Headers", ACCESS_TOKEN);
 
         var token = req.getHeader(ACCESS_TOKEN);
         if (Objects.equals(token, "day5") || Objects.equals(req.getServletPath(), "/")) {
