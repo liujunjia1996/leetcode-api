@@ -7,6 +7,8 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -20,6 +22,8 @@ public class TimeJob {
 
     @Scheduled(cron = "0 */4 * * * ?")
     void setCache() {
+        cacheManager.getCacheNames()
+                .forEach(name -> Objects.requireNonNull(cacheManager.getCache(name)).clear());
         log.info("set cache");
         userService.getCalendar(MY_SELF);
         userService.getProgress(MY_SELF);
